@@ -1,0 +1,11 @@
+services:
+  gatus-proxy-checkhost:
+    image: ghcr.io/saturn99/gatus-proxy-checkhost:v2
+    container_name: gatus-proxy-checkhost
+    restart: unless-stopped
+    env_file: ".env"
+    environment:
+      - PORT=${PORT:-8080}
+
+    ports:
+      - "${IP:-127.0.0.1}:${PORT}:${PORT}"

@@ -51,3 +51,7 @@ docker run --rm \
 
 ```
 
+#### compose:
+```
+IP=0.0.0.0 docker compose up
+```
