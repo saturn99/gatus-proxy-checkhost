@@ -65,3 +65,43 @@ curl -X POST \
 	"status":"check"
 	}'
 ```
+
+
+
+# use in gatus:
+
+add alerting with custom
+
+```
+alerting:
+  custom:
+    url: "http://127.0.0.1:8080/webhook"
+    method: "POST"
+    body: |
+      {
+        "status": "[ALERT_TRIGGERED_OR_RESOLVED]",
+        "name": "[ENDPOINT_URL]"
+      }
+    placeholders:
+      ALERT_TRIGGERED_OR_RESOLVED:
+        TRIGGERED: "check"
+        RESOLVED: "OK"
+```
+
+- sure use `placeholders` with maped `TRIGGERED` to `check`
+
+
+then use it to configs:
+
+```
+endpoints:
+  - name: test
+    url: https://test.test/
+    alerts:
+      - type: custom
+        failure-threshold: 1
+        send-on-resolved: true
+```
+
+
+### if host is down, app send check-host permanent link to your telegram
