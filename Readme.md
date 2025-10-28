@@ -55,3 +55,13 @@ docker run --rm \
 ```
 IP=0.0.0.0 docker compose up
 ```
+
+# Request:
+```
+curl -X POST \
+  http://localhost:8080/webhook \
+  -d '{
+	"name":"https://www.yahoo.com/",
+	"status":"check"
+	}'
+```
